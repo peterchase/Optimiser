@@ -51,6 +51,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <Compile Include="Settings.fs" />
+    <Compile Include="Output.fs" />
     <Compile Include="Derivative.fs" />
     <Compile Include="Step.fs" />
     <Compile Include="Solve.fs" />

@@ -12,4 +12,4 @@ module Derivative =
         let firstDerivative = (fxPlusDx - fxMinusDx)/(2.0 * dx)
         let secondDerivative = (fxPlusDx - 2.0*fx + fxMinusDx)/(dx*dx)
 
-        [ firstDerivative; secondDerivative ]
+        [ fx; firstDerivative; secondDerivative ]

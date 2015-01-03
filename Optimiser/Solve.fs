@@ -2,13 +2,15 @@
 
 module Solve =
 
-    let rec solution (settings: Settings) f x =
+    let rec performStep (settings: Settings) f x valueAndDerivatives step =
+        Output.Step x valueAndDerivatives step
+        solution settings f (x + step)
 
-        let step = Step.nextStep settings f x
-        let fx = f x
+    and solution (settings: Settings) f x =
 
-        printfn "%15.10f %15.10f" x fx 
+        let stepData = Step.nextStep settings f x
+        let fx = stepData.valueAndDerivatives.[0]
 
-        match step with
-        | Some s -> solution settings f (x + s)
-        | None _ -> x
+        match stepData.step with
+        | Some(s) -> performStep settings f x stepData.valueAndDerivatives s
+        | None _ -> (x, stepData)
