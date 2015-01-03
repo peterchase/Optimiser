@@ -2,8 +2,14 @@
 
 module Derivative =
 
-    let deriv (settings: Settings) f x : double =
+    let derivs (settings: Settings) f x : double list =
         let dx = settings.dxForDerivative
-        (f (x + dx) - f x)/dx
+        let fx = f x
+        let fxPlusDx = f (x + dx)
+        let fxMinusDx = f (x - dx)
 
-    let deriv2 (settings: Settings) f x = deriv settings (deriv settings f) x
+        // Simple central differences. There may be better formulae, if we ever come to care enough!
+        let firstDerivative = (fxPlusDx - fxMinusDx)/(2.0 * dx)
+        let secondDerivative = (fxPlusDx - 2.0*fx + fxMinusDx)/(dx*dx)
+
+        [ firstDerivative; secondDerivative ]
