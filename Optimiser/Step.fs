@@ -2,10 +2,12 @@
 
 module Step =
 
-    let nextStep tol dx f x =
+    let nextStep (settings: Settings) f x =
 
-        let derivative = Derivative.deriv dx f x
+        let tol = settings.zeroDerivativeTolerance
+        
+        let derivative = Derivative.deriv settings f x
         
         match derivative with
             | d when abs d < tol -> None
-            | d -> Some (-d/(Derivative.deriv2 dx f x))
+            | d -> Some (-d/(Derivative.deriv2 settings f x))

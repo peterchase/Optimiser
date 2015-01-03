@@ -2,6 +2,8 @@
 
 module Derivative =
 
-    let deriv dx f x : double = (f (x + dx) - f x)/dx
+    let deriv (settings: Settings) f x : double =
+        let dx = settings.dxForDerivative
+        (f (x + dx) - f x)/dx
 
-    let deriv2 dx f x = deriv dx (deriv dx f) x
+    let deriv2 (settings: Settings) f x = deriv settings (deriv settings f) x

@@ -2,13 +2,13 @@
 
 module Solve =
 
-    let rec solution tol dx f x =
+    let rec solution (settings: Settings) f x =
 
-        let step = Step.nextStep tol dx f x
+        let step = Step.nextStep settings f x
         let fx = f x
 
-        printfn "%10f %10f" x fx 
+        printfn "%15.10f %15.10f" x fx 
 
         match step with
-        | Some s -> solution tol dx f (x + s)
+        | Some s -> solution settings f (x + s)
         | None _ -> x
