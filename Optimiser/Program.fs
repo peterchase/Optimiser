@@ -11,9 +11,11 @@ module Program =
 
         Output.Header
 
-        let solution = Solve.solution settings [] f xInitial
-        
-        let steps = Output.History solution
+        let history = Solve.solution settings [] f xInitial
+        let solution = List.head history
 
-        printfn "Steps = %d" steps
+        let steps = Output.History history
+
+        printfn "Solution found: x = %f, in %d steps" solution.x steps
+
         0 // return an integer exit code
