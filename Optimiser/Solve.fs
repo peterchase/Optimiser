@@ -5,7 +5,6 @@ module Solve =
     let rec solution (settings: Settings) history f x =
 
         let stepData = Step.nextStep settings f x
-        let fx = stepData.valueAndDerivatives.value
         let newHistory = stepData :: history
 
         match stepData.step with
