@@ -1,6 +1,6 @@
 ﻿namespace Optimiser
 
-type StepData = { step: double Option; valueAndDerivatives: double list }
+type StepData = { step: double Option; valueAndDerivatives: ValueAndDerivatives }
 
 module Step =
 
@@ -11,5 +11,5 @@ module Step =
         let derivatives = Derivative.derivs settings f x
         
         match derivatives with
-            | d when abs d.[1] < tol -> { step = None; valueAndDerivatives = derivatives }
-            | d -> { step = Some (-d.[1]/d.[2]); valueAndDerivatives = derivatives }
+            | d when abs d.first < tol -> { step = None; valueAndDerivatives = derivatives }
+            | d -> { step = Some (-d.first/d.second); valueAndDerivatives = derivatives }

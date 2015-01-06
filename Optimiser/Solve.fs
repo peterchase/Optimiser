@@ -9,7 +9,7 @@ module Solve =
     and solution (settings: Settings) f x =
 
         let stepData = Step.nextStep settings f x
-        let fx = stepData.valueAndDerivatives.[0]
+        let fx = stepData.valueAndDerivatives.value
 
         match stepData.step with
         | Some(s) -> performStep settings f x stepData.valueAndDerivatives s

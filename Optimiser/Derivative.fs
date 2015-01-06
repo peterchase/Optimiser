@@ -1,8 +1,10 @@
 ﻿namespace Optimiser
 
+type ValueAndDerivatives = { value: double; first: double; second: double }
+
 module Derivative =
 
-    let derivs (settings: Settings) f x : double list =
+    let derivs (settings: Settings) f x =
         let dx = settings.dxForDerivative
         let fx = f x
         let fxPlusDx = f (x + dx)
@@ -12,4 +14,4 @@ module Derivative =
         let firstDerivative = (fxPlusDx - fxMinusDx)/(2.0 * dx)
         let secondDerivative = (fxPlusDx - 2.0*fx + fxMinusDx)/(dx*dx)
 
-        [ fx; firstDerivative; secondDerivative ]
+        { value = fx; first = firstDerivative; second = secondDerivative }

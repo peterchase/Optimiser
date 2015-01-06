@@ -14,7 +14,7 @@ module Program =
         let solution = Solve.solution settings f xInitial
         let x = fst solution
         let valueAndDerivatives = (snd solution).valueAndDerivatives
-        let fx = valueAndDerivatives.[0]
+        let fx = valueAndDerivatives.value
 
         printfn "Solution x = %f, f(x) = %f" x fx
         0 // return an integer exit code
