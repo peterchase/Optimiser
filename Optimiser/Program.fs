@@ -11,10 +11,9 @@ module Program =
 
         Output.Header
 
-        let solution = Solve.solution settings f xInitial
-        let x = fst solution
-        let valueAndDerivatives = (snd solution).valueAndDerivatives
-        let fx = valueAndDerivatives.value
+        let solution = Solve.solution settings [] f xInitial
+        
+        let steps = Output.History solution
 
-        printfn "Solution x = %f, f(x) = %f" x fx
+        printfn "Steps = %d" steps
         0 // return an integer exit code
