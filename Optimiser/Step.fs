@@ -8,11 +8,8 @@ module Step =
 
     let nextStep settings f x =
 
-        let tol = settings.zeroDerivativeTolerance
-        
-        let derivatives = Derivative.derivs settings f x
-
         let calcStep derivatives =
+            let tol = settings.zeroDerivativeTolerance
             try
                 match derivatives with
                     | d when abs d.first < tol -> Success { x = x; step = None; valueAndDerivatives = derivatives }
@@ -20,4 +17,5 @@ module Step =
             with
                 | _ -> Failure "Could not calculate step"
         
-        Binding.bindTwoTrack calcStep derivatives
+        let twoTrackDerivatives = Derivative.derivs settings f x
+        Binding.bindTwoTrack calcStep twoTrackDerivatives
