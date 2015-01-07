@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Optimiser", "Optimiser\Optimiser.fsproj", "{F915B2CC-0F4E-44A3-BE1A-E2A62655806F}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "OptimiserConsoleDemo", "Optimiser\OptimiserConsoleDemo.fsproj", "{F915B2CC-0F4E-44A3-BE1A-E2A62655806F}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TwoTrack", "TwoTrack\TwoTrack.fsproj", "{4E832D6C-CDAE-49CE-B2E6-601DBD4D093A}"
 EndProject
