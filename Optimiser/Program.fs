@@ -10,7 +10,8 @@ module Program =
         let xInitial = 20.0
 
         let settings = { zeroDerivativeTolerance = 1.0e-10; dxForDerivative = 1.0e-6 }
-        let nextStep = Step.nextStep settings
+        let derivs = Derivative.derivs settings
+        let nextStep = Step.nextStep settings derivs
 
         Output.Header
 

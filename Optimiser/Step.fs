@@ -15,7 +15,7 @@ module Step =
         with
             | _ -> Failure "Could not calculate step"
 
-    let nextStep settings f x =
-        let derivativesOrFailure = Derivative.derivs settings f x
+    let nextStep settings derivs f x =
+        let derivativesOrFailure = derivs f x
         let calcStepWithErrorHandling = Binding.bindTwoTrack (calcStep settings x)
         calcStepWithErrorHandling derivativesOrFailure

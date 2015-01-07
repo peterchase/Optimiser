@@ -4,7 +4,7 @@ open TwoTrack
 
 module Solve =
 
-    let rec private solutionWithErrorHandling (nextStep: (double -> double) -> double -> Result<StepData, string>) history f x =
+    let rec private solutionWithErrorHandling nextStep history f x =
         let stepDataOrFailure = nextStep f x
 
         let solutionImpl stepData =
@@ -17,4 +17,4 @@ module Solve =
         | Success s -> solutionImpl s
         | Failure f -> Failure f
 
-    let solution nextStep f x = solutionWithErrorHandling nextStep [] f x
+    let solution (nextStep: (double -> double) -> double -> Result<StepData, string>) f x = solutionWithErrorHandling nextStep [] f x
