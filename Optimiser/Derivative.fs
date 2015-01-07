@@ -6,7 +6,7 @@ type ValueAndDerivatives = { value: double; first: double; second: double }
 
 module Derivative =
 
-    let derivs (settings: Settings) f x =
+    let derivs settings f x =
         let dx = settings.dxForDerivative
         let fx = f x
         let fxPlusDx = f (x + dx)

@@ -1,5 +1,7 @@
 ﻿namespace Optimiser
 
+open TwoTrack
+
 module Program =
     [<EntryPoint>]
     let main argv = 
@@ -11,11 +13,14 @@ module Program =
 
         Output.Header
 
-        let history = Solve.solution settings f xInitial
-        let solution = List.head history
-
-        let steps = Output.history history
-
-        printfn "Solution found: x = %f, in %d steps" solution.x steps
-
-        0 // return an integer exit code
+        let historyOrFailure = Solve.solution settings f xInitial
+        match historyOrFailure with
+        | Success history ->
+            let solution = List.head history
+            let steps = Output.history history
+            printfn "Solution found: x = %f, in %d steps" solution.x steps
+            0 // exit code
+        | Failure f ->
+            printfn "Failure: %s" f
+            1 // exit code
+            
