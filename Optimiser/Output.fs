@@ -1,5 +1,7 @@
 ﻿namespace Optimiser
 
+open OptimiserLib
+
 module Output =
 
     let Header =

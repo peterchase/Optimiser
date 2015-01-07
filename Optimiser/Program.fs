@@ -1,6 +1,7 @@
 ﻿namespace Optimiser
 
 open TwoTrack
+open OptimiserLib
 
 module Program =
     [<EntryPoint>]

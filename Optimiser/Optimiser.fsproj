@@ -50,14 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="Settings.fs" />
-    <Compile Include="Derivative.fs" />
-    <Compile Include="Step.fs" />
     <Compile Include="Output.fs" />
-    <Compile Include="Solve.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OptimiserLib\OptimiserLib.fsproj">
+      <Name>OptimiserLib</Name>
+      <Project>{d3b15fd6-5fc7-4ec0-b854-cd88a91e3d57}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\TwoTrack\TwoTrack.fsproj">
       <Name>TwoTrack</Name>
       <Project>{4e832d6c-cdae-49ce-b2e6-601dbd4d093a}</Project>
