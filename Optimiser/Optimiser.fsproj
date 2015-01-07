@@ -57,6 +57,13 @@
     <Compile Include="Solve.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TwoTrack\TwoTrack.fsproj">
+      <Name>TwoTrack</Name>
+      <Project>{4e832d6c-cdae-49ce-b2e6-601dbd4d093a}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>

@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Optimiser", "Optimiser\Optimiser.fsproj", "{F915B2CC-0F4E-44A3-BE1A-E2A62655806F}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TwoTrack", "TwoTrack\TwoTrack.fsproj", "{4E832D6C-CDAE-49CE-B2E6-601DBD4D093A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F915B2CC-0F4E-44A3-BE1A-E2A62655806F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F915B2CC-0F4E-44A3-BE1A-E2A62655806F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F915B2CC-0F4E-44A3-BE1A-E2A62655806F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E832D6C-CDAE-49CE-B2E6-601DBD4D093A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E832D6C-CDAE-49CE-B2E6-601DBD4D093A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E832D6C-CDAE-49CE-B2E6-601DBD4D093A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E832D6C-CDAE-49CE-B2E6-601DBD4D093A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
