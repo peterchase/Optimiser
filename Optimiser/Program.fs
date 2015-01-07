@@ -1,5 +1,7 @@
 ﻿namespace Optimiser
 
+open TwoTrack
+
 module Program =
     [<EntryPoint>]
     let main argv = 
@@ -8,14 +10,18 @@ module Program =
         let xInitial = 20.0
 
         let settings = { zeroDerivativeTolerance = 1.0e-10; dxForDerivative = 1.0e-6 }
+        let derivs = Derivative.derivs settings
+        let nextStep = Step.nextStep settings derivs
 
         Output.Header
 
-        let history = Solve.solution settings f xInitial
-        let solution = List.head history
-
-        let steps = Output.history history
-
-        printfn "Solution found: x = %f, in %d steps" solution.x steps
-
-        0 // return an integer exit code
+        let historyOrFailure = Solve.solution nextStep f xInitial
+        match historyOrFailure with
+        | Success history ->
+            let solution = List.head history
+            let steps = Output.history history
+            printfn "Solution found: x = %f, in %d steps" solution.x steps
+            0 // exit code
+        | Failure f ->
+            printfn "Failure: %s" f
+            1 // exit code
