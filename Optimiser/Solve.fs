@@ -17,4 +17,4 @@ module Solve =
         | Success s -> solutionImpl s
         | Failure f -> Failure f
 
-    let solution (nextStep: (double -> double) -> double -> Result<StepData, string>) f x = solutionWithErrorHandling nextStep [] f x
+    let solution nextStep f x = solutionWithErrorHandling nextStep [] f x

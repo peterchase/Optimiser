@@ -25,4 +25,3 @@ module Program =
         | Failure f ->
             printfn "Failure: %s" f
             1 // exit code
-            
