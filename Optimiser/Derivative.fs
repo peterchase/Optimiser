@@ -8,7 +8,7 @@ module Derivative =
 
     let derivs settings f x =
         let dx = settings.dxForDerivative
-        let fx = f x
+        let fx: double = f x
         let fxPlusDx = f (x + dx)
         let fxMinusDx = f (x - dx)
 

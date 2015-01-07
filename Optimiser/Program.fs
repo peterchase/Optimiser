@@ -10,10 +10,11 @@ module Program =
         let xInitial = 20.0
 
         let settings = { zeroDerivativeTolerance = 1.0e-10; dxForDerivative = 1.0e-6 }
+        let nextStep = Step.nextStep settings
 
         Output.Header
 
-        let historyOrFailure = Solve.solution settings f xInitial
+        let historyOrFailure = Solve.solution nextStep f xInitial
         match historyOrFailure with
         | Success history ->
             let solution = List.head history
