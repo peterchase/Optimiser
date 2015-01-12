@@ -19,10 +19,12 @@ module Program =
         match graph with
         | Success g ->
             let form = g.ShowChart()
+            System.Windows.Forms.Application.Run(form)
             Success history
         | Failure failure -> Failure failure
 
     [<EntryPoint>]
+    [<STAThread>]
     let main argv = 
 
         let f x = x**3.0 - 100.0*x
