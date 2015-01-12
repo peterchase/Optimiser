@@ -28,7 +28,7 @@ module Program =
     let main argv = 
 
         let f x = x**3.0 - 100.0*x
-        let xInitial = 20.0
+        let xInitial = 250.0
 
         let graphSettings = { numSteps = 100; extraDomain = 0.5 }
         let settings = { zeroDerivativeTolerance = 1.0e-10; dxForDerivative = 1.0e-6 }
