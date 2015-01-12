@@ -1,12 +1,13 @@
 ﻿namespace OptimiserLib
 
 open TwoTrack
+open FSharp.Charting
 
 type GraphSettings = { numSteps: int; extraDomain: double }
 
 module Graph =
 
-    let fCurve settings f history =
+    let private functionCurve settings f history =
         try
             let xValues = history |> List.map (fun sd -> sd.x)
             let xMin = List.min xValues
@@ -27,7 +28,19 @@ module Graph =
         with
             | ex -> Failure ex.Message
 
-    let stepsCurve history =
+    let private stepsCurve history =
         let curve = history |> List.map (fun sd -> (sd.x, sd.valueAndDerivatives.value))
-        Success curve
+        curve
         
+    let doGraph settings f history =
+        let curve1OrFailure = functionCurve settings f history
+        let curve2 = stepsCurve history
+        match curve1OrFailure with
+        | Success curve1 ->
+            let line1 = Chart.Line(curve1, Name="Function")
+            let line2 = Chart.Line(curve2, Name="Solution")
+            let lines = [ line1; line2 ]
+            let combined = Chart.Combine lines
+            Success combined
+
+        | Failure failure -> Failure failure
