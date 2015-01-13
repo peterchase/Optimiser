@@ -41,6 +41,5 @@ module Graph =
             (Chart.Combine lines).WithTitle("Solving by Newton's Method").WithXAxis(Title="X", Min=xGraphMin, Max=xGraphMax).WithYAxis(Title="F(X)")
 
     let doGraph settings f history =
-        let curve1OrFailure = functionCurve settings f history
-        let curve2 = stepsCurve history
-        curve1OrFailure |> TwoTrack.Binding.bindSimple (combinedLineChart curve2)
+        let solution = stepsCurve history
+        functionCurve settings f history |> TwoTrack.Binding.bindSimple (combinedLineChart solution)
