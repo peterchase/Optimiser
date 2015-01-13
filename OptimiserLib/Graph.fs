@@ -32,17 +32,15 @@ module Graph =
         let curve = history |> List.map (fun sd -> (sd.x, sd.valueAndDerivatives.value))
         curve
         
+    let private combinedLineChart (solution: seq<double * double>) (func: seq<double * double>) =
+            let line1 = Chart.Line(func, Name="Function")
+            let line2 = Chart.Line(solution, Name="Solution").WithMarkers(Size=10, Style=ChartTypes.MarkerStyle.Circle)
+            let lines = [ line1; line2 ]
+            let xGraphMin = Seq.head func |> fst |> floor
+            let xGraphMax = Seq.last func |> fst |> ceil
+            (Chart.Combine lines).WithTitle("Solving by Newton's Method").WithXAxis(Title="X", Min=xGraphMin, Max=xGraphMax).WithYAxis(Title="F(X)")
+
     let doGraph settings f history =
         let curve1OrFailure = functionCurve settings f history
         let curve2 = stepsCurve history
-        match curve1OrFailure with
-        | Success curve1 ->
-            let line1 = Chart.Line(curve1, Name="Function")
-            let line2 = Chart.Line(curve2, Name="Solution").WithMarkers(Size=10, Style=ChartTypes.MarkerStyle.Circle)
-            let lines = [ line1; line2 ]
-            let xGraphMin = Seq.head curve1 |> fst |> floor
-            let xGraphMax = Seq.last curve1 |> fst |> ceil
-            let combined = (Chart.Combine lines).WithTitle("Solving by Newton's Method").WithXAxis(Title="X", Min=xGraphMin, Max=xGraphMax).WithYAxis(Title="F(X)")
-            Success combined
-
-        | Failure failure -> Failure failure
+        curve1OrFailure |> TwoTrack.Binding.bindSimple (combinedLineChart curve2)
