@@ -27,8 +27,8 @@ module Program =
     [<STAThread>]
     let main argv = 
 
-        let f x = x**3.0 - 100.0*x
-        let xInitial = 250.0
+        let f x = 0.3*x**4.0 - 0.1*x**3.0 - 100.0*x + 12.0
+        let xInitial = -2.0
 
         let graphSettings = { numSteps = 100; extraDomain = 0.5 }
         let settings = { zeroDerivativeTolerance = 1.0e-10; dxForDerivative = 1.0e-6 }
