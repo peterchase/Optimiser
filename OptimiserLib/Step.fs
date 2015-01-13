@@ -16,9 +16,7 @@ module Step =
         let deltaFx = fxNew - derivatives.value
         let expectedChangeDirection = derivatives.first * adjustedStep |> sign
         let actualChangeDirection = deltaFx |> sign
-        if expectedChangeDirection = actualChangeDirection then
-            adjustedStep
-        else if stepFactor > settings.minStepFactor then
+        if expectedChangeDirection <> actualChangeDirection && stepFactor > settings.minStepFactor then
             let reducedStepFactor = stepFactor * settings.stepReductionFactor
             calcSafeStep settings derivatives f x reducedStepFactor
         else
