@@ -39,7 +39,7 @@ module Program =
 
         let doGraph = TwoTrack.Binding.bindTwoTrack (outputToGraph graphSettings f)
         let doConsole = TwoTrack.Binding.bindSimple outputToConsole
-        let doOutput = doGraph >> doConsole
+        let doOutput = doConsole >> doGraph
         let overallResult = solution |> doOutput
 
         match overallResult with

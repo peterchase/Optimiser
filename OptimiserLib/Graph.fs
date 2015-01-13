@@ -40,7 +40,9 @@ module Graph =
             let line1 = Chart.Line(curve1, Name="Function")
             let line2 = Chart.Line(curve2, Name="Solution").WithMarkers(Size=10, Style=ChartTypes.MarkerStyle.Circle)
             let lines = [ line1; line2 ]
-            let combined = (Chart.Combine lines).WithTitle("Solving by Newton's Method").WithXAxis(Title="X").WithYAxis(Title="F(X) ")
+            let xGraphMin = Seq.head curve1 |> fst |> floor
+            let xGraphMax = Seq.last curve1 |> fst |> ceil
+            let combined = (Chart.Combine lines).WithTitle("Solving by Newton's Method").WithXAxis(Title="X", Min=xGraphMin, Max=xGraphMax).WithYAxis(Title="F(X)")
             Success combined
 
         | Failure failure -> Failure failure
