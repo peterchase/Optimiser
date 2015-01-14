@@ -4,17 +4,13 @@ open TwoTrack
 
 module Solve =
 
-    let rec private solutionWithErrorHandling nextStep history f x =
-        let stepDataOrFailure = nextStep f x
+    let rec private solutionImpl calcNextStep f x history stepData =
+        let newHistory = stepData :: history
+        match stepData.step with
+        | Some step -> solutionWithErrorHandling calcNextStep f (x + step) newHistory
+        | None _ -> Success newHistory
 
-        let solutionImpl stepData =
-            let newHistory = stepData :: history
-            match stepData.step with
-            | Some step -> solutionWithErrorHandling nextStep newHistory f (x + step)
-            | None _ -> Success newHistory
+    and private solutionWithErrorHandling calcNextStep f x history =
+        calcNextStep f x |> TwoTrack.Binding.bindTwoTrack (solutionImpl calcNextStep f x history)
 
-        match stepDataOrFailure with
-        | Success s -> solutionImpl s
-        | Failure f -> Failure f
-
-    let solution nextStep f x = solutionWithErrorHandling nextStep [] f x
+    let solution calcNextStep f x = solutionWithErrorHandling calcNextStep f x []

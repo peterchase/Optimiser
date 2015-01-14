@@ -14,14 +14,12 @@ module Program =
         printfn "Solution found: x = %f, in %d steps" solution.x numSteps
         history
 
+    let private showGraph (graph: ChartTypes.GenericChart) =
+        let form = graph.ShowChart()
+        System.Windows.Forms.Application.Run(form)
+
     let private outputToGraph graphSettings f history =
-        let graph = Graph.doGraph graphSettings f history
-        match graph with
-        | Success g ->
-            let form = g.ShowChart()
-            System.Windows.Forms.Application.Run(form)
-            Success history
-        | Failure failure -> Failure failure
+        Graph.doGraph graphSettings f history |> TwoTrack.Binding.bindSimple showGraph
 
     [<EntryPoint>]
     [<STAThread>]
@@ -43,7 +41,7 @@ module Program =
         let overallResult = solution |> doOutput
 
         match overallResult with
-        | Success history ->
+        | Success _ ->
             0 // exit code
         | Failure f ->
             printfn "Failure: %s" f
