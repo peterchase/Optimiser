@@ -22,7 +22,6 @@ module Program =
         Graph.doGraph graphSettings f history |> TwoTrack.Binding.bindSimple showGraph
 
     [<EntryPoint>]
-    [<STAThread>]
     let main argv = 
 
         let f x = 0.3*x**4.0 - 0.1*x**3.0 - 100.0*x + 12.0
